@@ -1,0 +1,53 @@
+内部用户表
+    t_admin
+字段名称    数据类型    约束        说明
+id          int         PK AI       主键 自增
+name        varchar(20)             用户名
+password                            密码 密文
+flag        int                     标记位 0有效 1暂时无效2失效
+create table t_admin(id int primary key auto_increment,name varchar(20),password varchar(50),flag int);
+
+
+    角色表
+    t_role
+字段名称    数据类型    约束        说明
+id                      PK AI       主键 自增
+name        varchar(20)             角色名
+info                                备注
+flag        int                     标记位 0有效 1失效
+create table t_role(id int primary key auto_increment,name varchar(20),info varchar(50),flag int);
+
+
+    用户角色表
+    t_adminrole
+字段名称    数据类型    约束        说明
+id          PK AI                   主键 自增
+aid         int                     用户id
+rid         int                     角色id
+    create table t_adminrole(id int primary key auto_increment,aid int,rid  int);
+
+
+    权限表(资源)
+    t_resource
+字段名称    数据类型    约束        说明
+id          PK AI                   主键 自增
+name        varchar(20)             名称
+type        int                     类型 1菜单 2按钮
+per         varchar(100)            具体的权限（菜单那么就是url,是按钮就是具体的权限）
+icon        varchar(50)             图标(菜单)
+parentid    int                     上级菜单
+    create table t_resource(id int primary key auto_increment,name varchar(20),per varchar(100),icon varchar(50),type int,parentid int);
+
+    角色权限表
+    t_roleresource
+字段名称    数据类型    约束        说明
+id          PK AI                   主键 自增
+resid       int                     资源id
+rid         int
+角色id
+    create table t_roleresource(id int primary key auto_increment,resid int,rid  int);
+
+
+
+
+
